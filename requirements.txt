@@ -1,0 +1,8 @@
+numpy
+scipy
+pandas
+sklearn
+dash
+plotly
+connexion[swagger-ui]
+requests
