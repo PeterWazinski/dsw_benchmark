@@ -1,6 +1,6 @@
 import connexion
 import os
-
+from typing import Dict
 
 def is_docker():
     """is python running inside a docker image?"""
@@ -14,9 +14,6 @@ def is_docker():
 hostname = "127.0.0.1"  # localhost
 if is_docker():
     hostname = "0.0.0.0"  # allow port remapping when running docker image
-
-from typing import Dict
-
 
 def post_predictinterface() -> Dict:
     print("Dict")
