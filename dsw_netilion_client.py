@@ -42,7 +42,11 @@ def basic_auth(username, password, required_scopes=None):
 if __name__ == '__main__':
     print("\n open swagger ui with http://localhost:9090/v1.0/ui\n credentials= admin/secret \n")
     app = connexion.FlaskApp(__name__, port=9090, host=hostname, specification_dir='.')
+
+    #openapi 3.0 yaml
     #app.add_api('dsw_netilion_client-api.yaml', arguments={'title': 'DSW Netilion Client'})
+
+    # swagger 2.0 yaml
     app.add_api('dsw_netilion_swagger.yaml', arguments={'title': 'DSW Netilion Client'})
     app.run()
 
