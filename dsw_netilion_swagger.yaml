@@ -1,0 +1,54 @@
+swagger: '2.0'
+
+info:
+  title: dsw benchmark, netilion client
+  version: '1.0'
+
+basePath: /v1.0
+
+paths:
+  "/predictinterface":
+    post:
+      summary: Return interface description, no params
+      description: algorithm provides interface infos which device type which process
+        val etc needed
+      operationId: dsw_netilion_client.post_predictinterface
+      responses:
+        '200':
+          description: Return interface description
+          schema:
+            type: object
+            example: '{"devicetypes": ["5W8C1H", "5W8C50"], "specs": ["eh.flow.mid.fastmeasures.mid_mediumtemperature"]}'
+      security:
+      - basic: []
+      parameters: []
+  "/predict":
+    post:
+      summary: make some prediction
+      description: Generates a prediction, p(x)=2x +1
+      operationId: dsw_netilion_client.post_predict
+      responses:
+        '200':
+          description: prediction
+          schema:
+            type: object
+            example: '{"value": 123} --> {predict_type: regression, result: 247]}'
+      security:
+      - basic: []
+      parameters:
+      - description: value to be interpolated
+        required: true
+        name: input
+        in: body
+        schema:
+          type: object
+
+schemes:
+- http
+
+host: localhost:9090
+
+securityDefinitions:
+  basic:
+    type: basic
+    x-basicInfoFunc: dsw_netilion_client.basic_auth

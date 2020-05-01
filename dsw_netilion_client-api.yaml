@@ -28,7 +28,7 @@ paths:
       description: Generates a prediction
       operationId: dsw_netilion_client.post_predict
       requestBody:
-        description: value to be interpolated
+        description: value to be interpolated - returns f(x)=2x +1
         required: true
         content:
           application/json:
@@ -43,7 +43,7 @@ paths:
             application/json:
               schema:
                 type: object
-                example: '{"predict_type": "regression", "result": 4711]}'
+                example: '{"predict_type": "regression", "result": 247]}'
       security:
         - basic: []
 components:
