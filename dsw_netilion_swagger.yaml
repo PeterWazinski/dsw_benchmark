@@ -8,35 +8,35 @@ basePath: /v1.0
 
 paths:
   "/predictinterface":
-    post:
+    get:
       summary: Return interface description, no params
       description: algorithm provides interface infos which device type which process
         val etc needed
-      operationId: dsw_netilion_client.post_predictinterface
+      operationId: dsw_netilion_client.get_predictinterface
       responses:
         '200':
           description: Return interface description
           schema:
             type: object
-            example: '{"devicetypes": ["5W8C1H", "5W8C50"], "specs": ["eh.flow.mid.fastmeasures.mid_mediumtemperature"]}'
+            example: '{"devicetypes": ["5W8C1H", "5W8C50"], "specs": ["eh.flow.mid.fastmeasures.mid_mediumtemperature", "eh.flow.cdm.fastmeasurements.flow_out1value"]}'
       security:
       - basic: []
       parameters: []
   "/predict":
     post:
       summary: make some prediction
-      description: Generates a prediction, p(x)=2x +1
+      description: Returns sum of Input Values
       operationId: dsw_netilion_client.post_predict
       responses:
         '200':
           description: prediction
           schema:
             type: object
-            example: '{"value": 123} --> {predict_type: regression, result: 247]}'
+            example: '{"eh.flow.mid.fastmeasures.mid_mediumtemperature": 1.2 , "eh.flow.cdm.fastmeasurements.flow_out1value" : 3.4}'
       security:
       - basic: []
       parameters:
-      - description: value to be interpolated
+      - description: values to be added
         required: true
         name: input
         in: body

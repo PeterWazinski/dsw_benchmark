@@ -15,20 +15,22 @@ hostname = "127.0.0.1"  # localhost
 if is_docker():
     hostname = "0.0.0.0"  # allow port remapping when running docker image
 
-def post_predictinterface() -> Dict:
+def get_predictinterface() -> Dict:
     print("Dict")
     return {"devicetypes": ["5W8C1H", "5W8C50"],  # some promag 800 dev types
-            "specs": ["eh.flow.mid.fastmeasures.mid_mediumtemperature"]}
+            "specs": ["eh.flow.mid.fastmeasures.mid_mediumtemperature", "eh.flow.cdm.fastmeasurements.flow_out1value"]}
 
 
 def post_predict(input: Dict) -> Dict:
     """
-    Assume linear regression: f(x) = 2x+1
-    input = {'value':123}
+       return  of "eh.flow.mid.fastmeasures.mid_mediumtemperature"  + "eh.flow.cdm.fastmeasurements.flow_out1value"
     """
-    val = int(input.get("value"))
+
+    v1 = input.get("eh.flow.mid.fastmeasures.mid_mediumtemperature")
+    v2 = input.get("eh.flow.cdm.fastmeasurements.flow_out1value")
+
     return {"predict_type": "some regression",
-            "prediction": 2 * val + 1}
+            "prediction": float(v1) + float(v2)}
 
 
 def basic_auth(username, password, required_scopes=None):
